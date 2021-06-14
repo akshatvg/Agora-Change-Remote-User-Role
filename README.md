@@ -27,7 +27,7 @@ Sample app to change role of a remote user in a livestream using the RTM SDK.
 - [Sample Video Call App](https://github.com/AgoraIO-Community/AgoraWebSDK-NG/tree/master/Demo/basicVideoCall)
 - [Agora RTM SDK Documentation](https://docs.agora.io/en/Real-time-Messaging/API%20Reference/RTM_web/v1.0.0/index.html)
 - [RTM Quickstart Guide](https://docs.agora.io/en/Real-time-Messaging/messaging_web?platform=Web)
-- [Guided Blog](#!)
+- [Guided Blog](https://medium.com/@akshatvg/change-role-of-remote-host-in-a-live-streaming-web-app-8c5b3e0a651f)
 
 ## Requirements
 
