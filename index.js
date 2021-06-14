@@ -19,17 +19,22 @@ var options = {
     uid: null,
     token: null,
     accountName: null,
-    role: "audience" // host or audience
+    role: "audience"
 };
 
+// Host join
 $("#host-join").click(function (e) {
+    RTMJoin();
     options.role = "host";
 })
 
+// Audience join
 $("#audience-join").click(function (e) {
+    RTMJoin();
     options.role = "audience";
 })
 
+// Join form submission
 $("#join-form").submit(async function (e) {
     e.preventDefault();
     $("#host-join").attr("disabled", true);
@@ -47,12 +52,12 @@ $("#join-form").submit(async function (e) {
     }
 })
 
+// Leave click
 $("#leave").click(function (e) {
     leave();
 })
 
 async function join() {
-    RTMJoin();
     // create Agora client
     client.setClientRole(options.role);
     if (options.role === "audience") {
@@ -174,29 +179,23 @@ async function RTMJoin() {
             clientRTM.on('MessageFromPeer', function ({
                 text
             }, peerId) {
-                console.log(peerId + " changed your role " + text);
+                console.log(peerId + " changed your role to " + text);
                 if (text == "host") {
-                    console.log("Remote video toggle reached with " + peerId);
-                    if ($("#remoteAudio-" + peerId).hasClass('hostOn')) {
-                        localTracks.audioTrack.setEnabled(false);
-                        console.log("Remote Audio Muted for: " + peerId);
-                        $("#remoteAudio-" + peerId).removeClass('hostOn');
-                    } else {
-                        localTracks.audioTrack.setEnabled(true);
-                        console.log("Remote Audio Unmuted for: " + peerId);
-                        $("#remoteAudio-" + peerId).addClass('hostOn');
-                    }
+                    leave();
+                    options.role = "host";
+                    console.log("Role changed to host.");
+                    client.setClientRole("host");
+                    join();
+                    $("#host-join").attr("disabled", true);
+                    $("#audience-join").attr("disabled", true);
                 } else if (text == "audience") {
-                    console.log("Remote video toggle reached with " + peerId);
-                    if ($("#remoteVideo-" + peerId).hasClass('audienceOn')) {
-                        localTracks.videoTrack.setEnabled(false);
-                        console.log("Remote Video Muted for: " + peerId);
-                        $("#remoteVideo-" + peerId).removeClass('audienceOn');
-                    } else {
-                        localTracks.videoTrack.setEnabled(true);
-                        console.log("Remote Video Unmuted for: " + peerId);
-                        $("#remoteVideo-" + peerId).addClass('audienceOn');
-                    }
+                    leave();
+                    options.role = "audience";
+                    console.log("Role changed to audience.");
+                    client.setClientRole("audience");
+                    join();
+                    $("#host-join").attr("disabled", true);
+                    $("#audience-join").attr("disabled", true);
                 }
             })
             // Display channel member joined updated users
@@ -256,9 +255,9 @@ async function RTMJoin() {
     }
 }
 
+// Subscribe to a remote user
 async function subscribe(user, mediaType) {
     const uid = user.uid;
-    // subscribe to a remote user
     await client.subscribe(user, mediaType);
     console.log("Successfully subscribed.");
     if (mediaType === 'video') {
