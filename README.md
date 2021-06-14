@@ -10,7 +10,7 @@ Sample app to change role of a remote user in a livestream using the RTM SDK.
 </a>
 </p>
 
-![Generic badge](https://img.shields.io/badge/Mute-Unmute-orange) 
+![Generic badge](https://img.shields.io/badge/Change-Role-orange) 
 
 [![Generic badge](https://img.shields.io/badge/view-demo-purple)](https://changerole.akshatvg.com)
 
