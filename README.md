@@ -2,7 +2,7 @@
 
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/akshatvg/Agora-Change-Remote-User-Role?logo=github&style=social)](https://github.com/akshatvg/) [![GitHub last commit](https://img.shields.io/github/last-commit/akshatvg/Agora-Change-Remote-User-Role?style=social&logo=git)](https://github.com/akshatvg/) [![GitHub stars](https://img.shields.io/github/stars/akshatvg/Agora-Change-Remote-User-Role?style=social)](https://github.com/akshatvg/Agora-Change-Remote-User-Role/stargazers) [![GitHub forks](https://img.shields.io/github/forks/akshatvg/Agora-Change-Remote-User-Role?style=social&logo=git)](https://github.com/akshatvg/Agora-Change-Remote-User-Role/network)
 
-Sample app to change role of a remote user in a livestream using the RTM SDK.
+Sample app to change role of a remote user in a live stream using the RTM SDK.
 
 <p align="center">
 <a href="https://changerole.akshatvg.com">
